@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://by1rwxybvp6xy"]
+
+[ext_resource type="Texture2D" uid="uid://c86co0gsp67nk" path="res://assets/sand_bg.jpg" id="1_jwyou"]
+
+[node name="Dialogue" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 28.0
+offset_top = -129.0
+offset_right = 113.0
+offset_bottom = -42.0
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+layout_mode = 0
+offset_right = 111.0
+offset_bottom = 93.0
+texture = ExtResource("1_jwyou")
+
+[node name="Name" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+bbcode_enabled = true
+text = "Walt:"
+
+[node name="Message" type="RichTextLabel" parent="NinePatchRect"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 13.0
+offset_right = 109.0
+offset_bottom = 88.0
+text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "

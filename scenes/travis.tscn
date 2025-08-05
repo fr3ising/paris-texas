@@ -1,0 +1,174 @@
+[gd_scene load_steps=21 format=3 uid="uid://kk3bstul7oja"]
+
+[ext_resource type="Script" uid="uid://bfdl456hnn5pu" path="res://scripts/travis.gd" id="1_lix0d"]
+[ext_resource type="Texture2D" uid="uid://ds2nq4l340ifi" path="res://assets/travis.png" id="2_baahj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lix0d"]
+radius = 17.0
+height = 42.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lix0d"]
+atlas = ExtResource("2_baahj")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_baahj"]
+atlas = ExtResource("2_baahj")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w5g03"]
+atlas = ExtResource("2_baahj")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hgpoe"]
+atlas = ExtResource("2_baahj")
+region = Rect2(64, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4au8n"]
+atlas = ExtResource("2_baahj")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ybpa"]
+atlas = ExtResource("2_baahj")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_60o4e"]
+atlas = ExtResource("2_baahj")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hh73x"]
+atlas = ExtResource("2_baahj")
+region = Rect2(192, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lh7k"]
+atlas = ExtResource("2_baahj")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2o5c"]
+atlas = ExtResource("2_baahj")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4m6ng"]
+atlas = ExtResource("2_baahj")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jwxnp"]
+atlas = ExtResource("2_baahj")
+region = Rect2(0, 192, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ep7e2"]
+atlas = ExtResource("2_baahj")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs0lh"]
+atlas = ExtResource("2_baahj")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ji6wg"]
+atlas = ExtResource("2_baahj")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0lm3"]
+atlas = ExtResource("2_baahj")
+region = Rect2(128, 192, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v0lm3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lix0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_baahj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w5g03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hgpoe")
+}],
+"loop": true,
+"name": &"walk_east",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4au8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ybpa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_60o4e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hh73x")
+}],
+"loop": true,
+"name": &"walk_north",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lh7k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2o5c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4m6ng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jwxnp")
+}],
+"loop": true,
+"name": &"walk_south",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ep7e2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs0lh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ji6wg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0lm3")
+}],
+"loop": true,
+"name": &"walk_west",
+"speed": 5.0
+}]
+
+[node name="Travis" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
+script = ExtResource("1_lix0d")
+
+[node name="TravisBody" type="CharacterBody2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(1, -30)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TravisBody"]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_lix0d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="TravisBody"]
+z_as_relative = false
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_v0lm3")
+animation = &"walk_west"
+frame_progress = 0.16475
+
+[node name="Line2D" type="Line2D" parent="TravisBody/AnimatedSprite2D"]
+visible = false
+z_as_relative = false
+y_sort_enabled = true
+scale = Vector2(1.35485, -6.23187)
+points = PackedVector2Array(-32, 0, 35, 0)
+width = 1.0

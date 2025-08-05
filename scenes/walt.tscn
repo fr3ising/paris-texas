@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfix71iup5wi6"]
+
+[ext_resource type="Texture2D" uid="uid://3cr2f6bieukr" path="res://assets/walt.png" id="1_4jbw0"]
+[ext_resource type="PackedScene" uid="uid://by1rwxybvp6xy" path="res://scenes/dialogue.tscn" id="2_glp5w"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4jbw0"]
+atlas = ExtResource("1_4jbw0")
+region = Rect2(46, 0, 64, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_glp5w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4jbw0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ymewe"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4jbw0"]
+radius = 20.0
+height = 168.0
+
+[node name="Walt" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(0, -15)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_glp5w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_ymewe")
+
+[node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2(0, -15)
+
+[node name="InteractionShape" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, 30)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4jbw0")
+
+[node name="WaltSpeech" parent="." instance=ExtResource("2_glp5w")]
