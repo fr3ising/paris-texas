@@ -33,5 +33,6 @@ func _process(_delta: float) -> void:
 		sprite.stop()
 	$TravisBody.velocity = velocity
 	$TravisBody.move_and_slide()
-	position = $TravisBody.position
-	position = position.clamp(Vector2.ZERO, screen_size)
+	position += velocity * _delta
+	# position = $TravisBody.position
+	# position = position.clamp(Vector2.ZERO, screen_size)
