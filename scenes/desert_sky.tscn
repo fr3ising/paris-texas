@@ -3,11 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://eu21u5p3n8dj" path="res://assets/desert_sky.png" id="1_p6ggq"]
 
 [node name="DesertSky" type="CanvasLayer"]
+layer = -1
+scale = Vector2(0.784043, 0.102108)
+transform = Transform2D(0.784043, 0, 0, 0.102108, 0, 0)
 
 [node name="TextureRect" type="TextureRect" parent="."]
-offset_left = -3.0
-offset_top = 1.0
-offset_right = 1302.0
-offset_bottom = 347.0
-scale = Vector2(0.742467, 0.3375)
+offset_left = -45.9159
+offset_right = 1259.08
+offset_bottom = 346.0
 texture = ExtResource("1_p6ggq")

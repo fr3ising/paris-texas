@@ -3,4 +3,5 @@
 [ext_resource type="Script" uid="uid://cvtogdysedrba" path="res://scripts/desert_walk_1.gd" id="1_fexk5"]
 
 [node name="DesertWalk1" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_fexk5")
