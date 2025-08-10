@@ -2,25 +2,45 @@ extends Node2D
 
 var TravisScene := preload("res://scenes/travis.tscn")
 var DesertScene := preload("res://scenes/desert.tscn")
-var DesertSkyScene := preload("res://scenes/desert_sky.tscn")
+var HudScene := preload("res://scenes/hud.tscn")
 
 var travis
 var camera
+var timer
+var init_health = 50.0
+var time_to_die = 20.0
+var health_bar
 
 func _ready() -> void:
-	# var desert_sky = DesertSkyScene.instantiate()
-	# add_child(desert_sky)
 	var desert = DesertScene.instantiate()
 	add_child(desert)
+	var hud = HudScene.instantiate()
+	add_child(hud)
+	health_bar = hud.get_node("HealthBar")
+	health_bar.value = init_health
+	_setup_timer()
 	var travis_spawn_point = desert.get_node("TravisSpawnPoint")
 	travis = TravisScene.instantiate()
 	travis.global_position = travis_spawn_point.global_position
 	add_child(travis)
 	var travis_body = travis.get_node("TravisBody")
 	camera = Camera2D.new()
-	camera.make_current()
 	travis_body.add_child(camera)
+	camera.make_current()
 	camera.position_smoothing_enabled = false
+
+func _setup_timer() -> void:
+	timer = Timer.new()
+	timer.wait_time = 1.0
+	timer.one_shot = true
+	timer.timeout.connect(_on_timer_timeout)
+	add_child(timer)
+	timer.start()
+
+func _on_timer_timeout() -> void:
+	if health_bar.value >= 0:
+		health_bar.value -= init_health / time_to_die
+		timer.start()
 
 func _process(_delta: float) -> void:
 	var travis_body = travis.get_node("TravisBody")

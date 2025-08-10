@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://eu21u5p3n8dj" path="res://assets/desert_sky.png" id="1_1v2dw"]
 [ext_resource type="Texture2D" uid="uid://dkt027ijprwoo" path="res://assets/beach-desert.png" id="2_cyhdl"]
 [ext_resource type="Texture2D" uid="uid://c686f2ca3i1xc" path="res://assets/desert_shop.png" id="3_wnm7i"]
-[ext_resource type="PackedScene" uid="uid://pmkmsaqj4uga" path="res://scenes/desert_sky.tscn" id="4_4tv1n"]
+[ext_resource type="PackedScene" uid="uid://dignontejceme" path="res://scenes/desert_sky.tscn" id="4_4tv1n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cyhdl"]
 texture = ExtResource("1_1v2dw")
