@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bytnim0o30e0k"]
+[gd_scene load_steps=4 format=3 uid="uid://bytnim0o30e0k"]
 
+[ext_resource type="Script" uid="uid://dq1v4ldamoovb" path="res://scripts/inventory_ui.gd" id="1_mdwe3"]
 [ext_resource type="Texture2D" uid="uid://jc61cvd43a2x" path="res://assets/bottle.png" id="1_tahbm"]
 [ext_resource type="Texture2D" uid="uid://c2kiw50wqmptx" path="res://assets/walt_phone_number.png" id="2_ylkvr"]
 
@@ -8,20 +9,24 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_mdwe3")
 
-[node name="GridContainer" type="GridContainer" parent="."]
-layout_mode = 0
-offset_left = 81.0
-offset_top = 53.0
-offset_right = 121.0
-offset_bottom = 93.0
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer"]
+offset_left = 85.0
+offset_top = 57.0
+offset_right = 125.0
+offset_bottom = 97.0
 scale = Vector2(23.9105, 13.4423)
 columns = 3
 
-[node name="Bottle" type="Button" parent="GridContainer"]
+[node name="Bottle" type="Button" parent="CanvasLayer/GridContainer"]
 layout_mode = 2
+action_mode = 0
+keep_pressed_outside = true
 
-[node name="TextureRect" type="TextureRect" parent="GridContainer/Bottle"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GridContainer/Bottle"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -29,33 +34,33 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_tahbm")
 expand_mode = 2
 
-[node name="Phone" type="Button" parent="GridContainer"]
+[node name="PostIt" type="Button" parent="CanvasLayer/GridContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="GridContainer/Phone"]
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/GridContainer/PostIt"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(0.0363125, 0.0423179)
 texture = ExtResource("2_ylkvr")
 
-[node name="Button" type="Button" parent="GridContainer"]
+[node name="Button" type="Button" parent="CanvasLayer/GridContainer"]
 layout_mode = 2
 
-[node name="Button2" type="Button" parent="GridContainer"]
+[node name="Button2" type="Button" parent="CanvasLayer/GridContainer"]
 layout_mode = 2
 
-[node name="Button3" type="Button" parent="GridContainer"]
+[node name="Button3" type="Button" parent="CanvasLayer/GridContainer"]
 layout_mode = 2
 
-[node name="Button4" type="Button" parent="GridContainer"]
+[node name="Button4" type="Button" parent="CanvasLayer/GridContainer"]
 layout_mode = 2
 
-[node name="Button5" type="Button" parent="GridContainer"]
+[node name="Button5" type="Button" parent="CanvasLayer/GridContainer"]
 layout_mode = 2
 
-[node name="Button6" type="Button" parent="GridContainer"]
+[node name="Button6" type="Button" parent="CanvasLayer/GridContainer"]
 layout_mode = 2
 
-[node name="Button7" type="Button" parent="GridContainer"]
+[node name="Button7" type="Button" parent="CanvasLayer/GridContainer"]
 layout_mode = 2

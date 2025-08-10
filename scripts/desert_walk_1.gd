@@ -3,10 +3,12 @@ extends Node2D
 var TravisScene := preload("res://scenes/travis.tscn")
 var DesertScene := preload("res://scenes/desert.tscn")
 var HudScene := preload("res://scenes/hud.tscn")
+var InventoryScene := preload("res://scenes/inventory_ui.tscn")
 
 var travis
 var camera
 var timer
+var inventory
 var init_health = 50.0
 var time_to_die = 20.0
 var health_bar
@@ -28,6 +30,8 @@ func _ready() -> void:
 	travis_body.add_child(camera)
 	camera.make_current()
 	camera.position_smoothing_enabled = false
+	inventory = InventoryScene.instantiate()
+	add_child(inventory)
 
 func _setup_timer() -> void:
 	timer = Timer.new()
@@ -49,3 +53,6 @@ func _process(_delta: float) -> void:
 		camera.position_smoothing_speed = 20.0
 	else:
 		camera.position_smoothing_enabled = false
+	if Input.is_action_pressed("inventory"):
+		timer.paused = true
+		inventory.showing()
