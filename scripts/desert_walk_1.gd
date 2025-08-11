@@ -31,7 +31,12 @@ func _ready() -> void:
 	camera.make_current()
 	camera.position_smoothing_enabled = false
 	inventory = InventoryScene.instantiate()
+	inventory.setup(on_click_bottle)
 	add_child(inventory)
+
+func on_click_bottle() -> void:
+	timer.paused = false
+	travis.switch_jug()
 
 func _setup_timer() -> void:
 	timer = Timer.new()
@@ -55,4 +60,4 @@ func _process(_delta: float) -> void:
 		camera.position_smoothing_enabled = false
 	if Input.is_action_pressed("inventory"):
 		timer.paused = true
-		inventory.showing()
+		inventory.display()

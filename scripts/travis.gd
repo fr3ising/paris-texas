@@ -8,6 +8,12 @@ enum TravisState {
 }
 
 @export var speed = 100
+
+var action = "walk"
+var direction = "south"
+
+var jug = true
+
 var screen_size
 
 var state = TravisState.IDLE
@@ -15,6 +21,12 @@ var velocity = Vector2.ZERO
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
+
+func get_jug() -> void:
+	jug = true
+
+func drop_jug() -> void:
+	jug = false
 
 func update_state() -> void:
 	velocity = Vector2.ZERO
@@ -34,13 +46,20 @@ func update_state() -> void:
 func move_and_animate(delta: float) -> void:
 	var sprite = $TravisBody.get_node("AnimatedSprite2D")
 	if velocity.x > 0:
-		sprite.animation = "walk_east"
+		direction = "east"
 	if velocity.x < 0:
-		sprite.animation = "walk_west"
+		direction = "west"
 	if velocity.y > 0:
-		sprite.animation = "walk_south"
+		direction = "south"
 	if velocity.y < 0:
-		sprite.animation = "walk_north"
+		direction = "north"
+
+	if jug:
+		action = "walk_jug"
+	else:
+		action = "walk"
+
+	sprite.animation = "%s_%s" % [action, direction]
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
@@ -52,6 +71,16 @@ func move_and_animate(delta: float) -> void:
 	$TravisBody.move_and_slide()
 	position += velocity * delta
 
+func switch_jug() -> void:
+	jug = !jug
+	var sprite = $TravisBody.get_node("AnimatedSprite2D")
+
+	if jug:
+		sprite.animation = "walk_jug_%s" % [direction]
+	else:
+		sprite.animation = "walk_%s" % [direction]
+
+	sprite.play()
 
 func _process(delta: float) -> void:
 	update_state()

@@ -9,6 +9,7 @@ var items = {}
 
 var state = InventoryState.HIDEN
 var canvas
+var on_click_bottle
 
 func _ready() -> void:
 	items = {
@@ -23,9 +24,11 @@ func _ready() -> void:
 	var postit = $CanvasLayer.get_node("GridContainer").get_node("PostIt")
 	print(items["postit"]["button"])
 
+func setup(_on_click_bottle: Callable) -> void:
+	on_click_bottle = _on_click_bottle
+
 func _process(_delta: float) -> void:
 	if state == InventoryState.HIDEN:
-		print("HIDING")
 		canvas.visible = false
 	else:
 		canvas.visible = true
@@ -34,11 +37,11 @@ func _process(_delta: float) -> void:
 	else:
 		items["bottle"]["button"].button_pressed = false
 
-func showing() -> void:
+func display() -> void:
 	state = InventoryState.SHOWING
 
-func hiding() -> void:
-	state = InventoryState.HIDEN
+# func undisplay() -> void:
+#	state = InventoryState.HIDEN
 
 func _on_bottle_pressed() -> void:
 	print("PRessing bottle")
@@ -46,5 +49,5 @@ func _on_bottle_pressed() -> void:
 		items["bottle"]["selected"] = false
 	else:
 		items["bottle"]["selected"] = true
-	print("Hiding canvas layer")
 	state = InventoryState.HIDEN
+	on_click_bottle.call()
