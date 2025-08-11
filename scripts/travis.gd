@@ -56,6 +56,9 @@ func move_and_animate(delta: float) -> void:
 	$TravisBody.move_and_slide()
 	position += velocity * delta
 
+func die() -> void:
+	print("DYING")
+
 func switch_jug() -> void:
 	jug = !jug
 	print("SWITCHING")

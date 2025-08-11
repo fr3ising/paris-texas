@@ -477,7 +477,7 @@ z_as_relative = false
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_v0lm3")
 animation = &"drink_east"
-frame_progress = 0.951842
+frame_progress = 0.525858
 
 [node name="Line2D" type="Line2D" parent="TravisBody/AnimatedSprite2D"]
 visible = false

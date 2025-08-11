@@ -47,9 +47,11 @@ func _setup_timer() -> void:
 	timer.start()
 
 func _on_timer_timeout() -> void:
-	if health_bar.value >= 0:
+	if health_bar.value >= 2:
 		health_bar.value -= init_health / time_to_die
 		timer.start()
+	if health_bar.value < 2:
+		travis.die()
 
 func _process(_delta: float) -> void:
 	var travis_body = travis.get_node("TravisBody")
