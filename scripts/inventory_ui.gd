@@ -40,9 +40,6 @@ func _process(_delta: float) -> void:
 func display() -> void:
 	state = InventoryState.SHOWING
 
-# func undisplay() -> void:
-#	state = InventoryState.HIDEN
-
 func _on_bottle_pressed() -> void:
 	print("PRessing bottle")
 	if items["bottle"]["selected"]:

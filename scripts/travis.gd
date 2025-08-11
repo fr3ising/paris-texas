@@ -1,6 +1,6 @@
 extends Node2D
 
-enum TravisState { IDLE, WALK, DRINK }
+enum TravisState { IDLE, WALK, WALK_JUG, DRINK }
 
 @export var speed = 100
 
@@ -21,29 +21,13 @@ var velocity = Vector2.ZERO
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
+	jug = false
 
 func get_jug() -> void:
 	jug = true
 
 func drop_jug() -> void:
 	jug = false
-
-# func update_state() -> void:
-#	velocity = Vector2.ZERO
-#	if Input.is_action_pressed("move_right"):
-#		velocity.x += 1
-#	if Input.is_action_pressed("move_left"):
-#		velocity.x -= 1
-#	if Input.is_action_pressed("move_down"):
-#		velocity.y += 1
-#	if Input.is_action_pressed("move_up"):
-#		velocity.y -= 1
-#	if velocity.length() > 0:
-#		state = TravisState.WALK
-#	if drinking:
-#		state = TravisState.DRINK
-#	else:
-#		state = TravisState.IDLE
 
 func move_and_animate(delta: float) -> void:
 	if velocity.x > 0:
@@ -74,7 +58,7 @@ func move_and_animate(delta: float) -> void:
 
 func switch_jug() -> void:
 	jug = !jug
-
+	print("SWITCHING")
 	if jug:
 		sprite.animation = "walk_jug_%s" % [direction]
 	else:
@@ -82,17 +66,15 @@ func switch_jug() -> void:
 
 	sprite.play()
 
-	# update_state()
-	# move_and_animate(delta)
-
-func state_drink(_delta: float) -> void:
-	# No movement here
-	pass
+func state_drink(delta: float) -> void:
+	drink_timer += delta
+	if drink_timer >= drink_duration:
+		change_state(TravisState.IDLE)
 
 func state_idle(_delta: float) -> void:
-	# if Input.is_action_just_pressed("action"):
-	#	change_state(TravisState.DRINK)
-	#	return
+	if Input.is_action_just_pressed("action") && jug:
+		change_state(TravisState.DRINK)
+		return
 	if Input.is_action_pressed("move_right"):
 		direction = "east"
 		change_state(TravisState.WALK)
@@ -107,9 +89,9 @@ func state_idle(_delta: float) -> void:
 		change_state(TravisState.WALK)
 
 func state_walk(delta: float) -> void:
-	# if Input.is_action_just_pressed("drink"):
-	#	change_state(TravisState.DRINK)
-	#	return
+	if Input.is_action_just_pressed("action") && jug:
+		change_state(TravisState.DRINK)
+		return
 	velocity = Vector2.ZERO
 	if Input.is_action_pressed("move_right"):
 		velocity.x += 1
@@ -124,15 +106,15 @@ func state_walk(delta: float) -> void:
 		velocity.y += 1
 		direction = "south"
 	if velocity.length() > 0:
-		change_state(TravisState.WALK)
+		if !jug:
+			change_state(TravisState.WALK)
+		else:
+			change_state(TravisState.WALK_JUG)
 	else:
 		change_state(TravisState.IDLE)
 		return
-	# Move
 	$TravisBody.velocity = velocity
 	$TravisBody.move_and_slide()
-	# $TravisBody.velocity = velocity
-	# $TravisBody.move_and_slide()
 	position += velocity * delta * speed
 
 func _process(delta: float) -> void:
@@ -140,6 +122,8 @@ func _process(delta: float) -> void:
 		TravisState.IDLE:
 			state_idle(delta)
 		TravisState.WALK:
+			state_walk(delta)
+		TravisState.WALK_JUG:
 			state_walk(delta)
 		TravisState.DRINK:
 			state_drink(delta)
@@ -151,6 +135,8 @@ func change_state(new_state: TravisState) -> void:
 			sprite.stop()
 		TravisState.WALK:
 			sprite.play("walk_%s" % direction)
+		TravisState.WALK_JUG:
+			sprite.play("walk_jug_%s" % direction)
 		TravisState.DRINK:
 			var anim_name = "drink_%s" % direction
 			sprite.play(anim_name)
