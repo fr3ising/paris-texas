@@ -429,7 +429,7 @@ z_as_relative = false
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_v0lm3")
 animation = &"walk_jug_east"
-frame_progress = 0.610906
+frame_progress = 0.0443838
 
 [node name="Line2D" type="Line2D" parent="TravisBody/AnimatedSprite2D"]
 visible = false
