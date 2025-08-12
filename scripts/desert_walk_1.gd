@@ -10,7 +10,7 @@ var camera
 var timer
 var inventory
 var init_health = 50.0
-var time_to_die = 20.0
+var time_to_die = 120.0
 var health_bar
 
 func _ready() -> void:
@@ -47,11 +47,11 @@ func _setup_timer() -> void:
 	timer.start()
 
 func _on_timer_timeout() -> void:
-	if health_bar.value >= 2:
+	if health_bar.value > 0:
 		health_bar.value -= init_health / time_to_die
 		timer.start()
-	if health_bar.value < 2:
-		travis.die()
+		return
+	travis.die()
 
 func _process(_delta: float) -> void:
 	var travis_body = travis.get_node("TravisBody")

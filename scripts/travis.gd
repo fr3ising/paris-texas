@@ -1,6 +1,6 @@
 extends Node2D
 
-enum TravisState { IDLE, WALK, WALK_JUG, DRINK }
+enum TravisState { IDLE, WALK, WALK_JUG, DRINK, DEATH }
 
 @export var speed = 100
 
@@ -29,45 +29,25 @@ func get_jug() -> void:
 func drop_jug() -> void:
 	jug = false
 
-func move_and_animate(delta: float) -> void:
-	if velocity.x > 0:
-		direction = "east"
-	if velocity.x < 0:
-		direction = "west"
-	if velocity.y > 0:
-		direction = "south"
-	if velocity.y < 0:
-		direction = "north"
-
-	if jug:
-		action = "walk_jug"
-	else:
-		action = "walk"
-
-	sprite.animation = "%s_%s" % [action, direction]
-
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-		sprite.play()
-	else:
-		sprite.stop()
-
-	$TravisBody.velocity = velocity
-	$TravisBody.move_and_slide()
-	position += velocity * delta
+func _on_animation_finished():
+	sprite.stop()
+	sprite.frame = sprite.sprite_frames.get_frame_count("death_east") - 1
 
 func die() -> void:
-	print("DYING")
+	change_state(TravisState.DEATH)
+	sprite.animation_finished.connect(_on_animation_finished)
+	sprite.play("death_east")
 
 func switch_jug() -> void:
 	jug = !jug
-	print("SWITCHING")
 	if jug:
 		sprite.animation = "walk_jug_%s" % [direction]
 	else:
 		sprite.animation = "walk_%s" % [direction]
-
 	sprite.play()
+
+func state_death(_delta: float) -> void:
+	pass
 
 func state_drink(delta: float) -> void:
 	drink_timer += delta
@@ -130,6 +110,8 @@ func _process(delta: float) -> void:
 			state_walk(delta)
 		TravisState.DRINK:
 			state_drink(delta)
+		TravisState.DEATH:
+			pass
 
 func change_state(new_state: TravisState) -> void:
 	state = new_state
@@ -145,6 +127,8 @@ func change_state(new_state: TravisState) -> void:
 			sprite.play(anim_name)
 			drink_timer = 0.0
 			drink_duration = get_anim_length(anim_name)
+		TravisState.DEATH:
+			return
 
 func get_anim_length(anim_name: String) -> float:
 	var frames = sprite.sprite_frames.get_frame_count(anim_name)

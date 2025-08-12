@@ -1,13 +1,30 @@
-[gd_scene load_steps=58 format=3 uid="uid://kk3bstul7oja"]
+[gd_scene load_steps=63 format=3 uid="uid://kk3bstul7oja"]
 
 [ext_resource type="Script" uid="uid://bfdl456hnn5pu" path="res://scripts/travis.gd" id="1_lix0d"]
 [ext_resource type="Texture2D" uid="uid://ds2nq4l340ifi" path="res://assets/travis.png" id="2_baahj"]
 [ext_resource type="Texture2D" uid="uid://c5ijlgucn5tua" path="res://assets/travis_drinking.png" id="2_w5g03"]
 [ext_resource type="Texture2D" uid="uid://danbltid6efr0" path="res://assets/travis_jug.png" id="3_baahj"]
+[ext_resource type="Texture2D" uid="uid://bu2vu18jen3ks" path="res://assets/travis_dying.png" id="3_hgpoe"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lix0d"]
 radius = 17.0
 height = 42.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04td7"]
+atlas = ExtResource("3_hgpoe")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ptr60"]
+atlas = ExtResource("3_hgpoe")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_doo44"]
+atlas = ExtResource("3_hgpoe")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_how02"]
+atlas = ExtResource("3_hgpoe")
+region = Rect2(0, 192, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pckg6"]
 atlas = ExtResource("2_w5g03")
@@ -215,6 +232,38 @@ region = Rect2(128, 192, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v0lm3"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04td7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ptr60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_doo44")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_how02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_how02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_how02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_how02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_how02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_how02")
+}],
+"loop": false,
+"name": &"death_east",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_pckg6")
@@ -476,8 +525,7 @@ shape = SubResource("CapsuleShape2D_lix0d")
 z_as_relative = false
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_v0lm3")
-animation = &"drink_east"
-frame_progress = 0.525858
+animation = &"walk_east"
 
 [node name="Line2D" type="Line2D" parent="TravisBody/AnimatedSprite2D"]
 visible = false
