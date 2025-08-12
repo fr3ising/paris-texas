@@ -16,12 +16,16 @@ var screen_size
 
 var state: TravisState = TravisState.IDLE
 var velocity = Vector2.ZERO
+var on_drink_callback
 
 @onready var sprite := $TravisBody.get_node("AnimatedSprite2D")
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 	jug = false
+
+func setup(_on_drink_callback: Callable) -> void:
+	on_drink_callback = _on_drink_callback
 
 func get_jug() -> void:
 	jug = true
@@ -127,6 +131,7 @@ func change_state(new_state: TravisState) -> void:
 			sprite.play(anim_name)
 			drink_timer = 0.0
 			drink_duration = get_anim_length(anim_name)
+			on_drink_callback.call()
 		TravisState.DEATH:
 			return
 

@@ -19,10 +19,7 @@ func _ready() -> void:
 					"selected": false }
 	}
 	canvas = $CanvasLayer
-	print(items["bottle"]["button"])
 	items["bottle"]["button"].pressed.connect(_on_bottle_pressed)
-	var postit = $CanvasLayer.get_node("GridContainer").get_node("PostIt")
-	print(items["postit"]["button"])
 
 func setup(_on_click_bottle: Callable) -> void:
 	on_click_bottle = _on_click_bottle
@@ -41,7 +38,6 @@ func display() -> void:
 	state = InventoryState.SHOWING
 
 func _on_bottle_pressed() -> void:
-	print("PRessing bottle")
 	if items["bottle"]["selected"]:
 		items["bottle"]["selected"] = false
 	else:

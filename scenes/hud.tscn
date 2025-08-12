@@ -17,3 +17,42 @@ theme_override_colors/font_outline_color = Color(0.976471, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 value = 50.0
 fill_mode = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HealthBar"]
+layout_mode = 0
+offset_left = -6.0
+offset_top = 28.6667
+offset_right = 34.0
+offset_bottom = 68.6667
+scale = Vector2(0.554185, 0.626965)
+theme_override_font_sizes/normal_font_size = 10
+text = "Health"
+fit_content = true
+
+[node name="WaterBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = 816.0
+offset_top = 37.0
+offset_right = 820.0
+offset_bottom = 64.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 0
+size_flags_vertical = 1
+size_flags_stretch_ratio = 11.11
+tooltip_text = "Health index"
+theme_override_colors/font_color = Color(0, 0, 1, 1)
+theme_override_colors/font_outline_color = Color(0.74, 0.493333, 0, 1)
+theme_override_font_sizes/font_size = 10
+value = 50.0
+fill_mode = 3
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="WaterBar"]
+offset_left = -6.33334
+offset_top = 28.6667
+offset_right = 33.6667
+offset_bottom = 68.6667
+scale = Vector2(0.554185, 0.626965)
+theme_override_font_sizes/normal_font_size = 10
+text = "Water
+"
+fit_content = true
