@@ -47,6 +47,7 @@ value = 50.0
 fill_mode = 3
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="WaterBar"]
+layout_mode = 0
 offset_left = -6.33334
 offset_top = 28.6667
 offset_right = 33.6667

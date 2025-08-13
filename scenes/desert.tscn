@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bma7rih86oxq2"]
+[gd_scene load_steps=12 format=4 uid="uid://bma7rih86oxq2"]
 
 [ext_resource type="Texture2D" uid="uid://eu21u5p3n8dj" path="res://assets/desert_sky.png" id="1_1v2dw"]
 [ext_resource type="Texture2D" uid="uid://dkt027ijprwoo" path="res://assets/beach-desert.png" id="2_cyhdl"]
@@ -13,11 +13,15 @@ texture = ExtResource("1_1v2dw")
 [sub_resource type="TileSet" id="TileSet_cyhdl"]
 sources/1 = SubResource("TileSetAtlasSource_cyhdl")
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4tv1n"]
+polygon = PackedVector2Array(-23.5537, -26.4463, -15.2893, 0, -5.3719, -52.0661, 8, -8, 19.4215, -45.4545, 8.67768, 59.5041, -7.0248, 64.4628)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wnm7i"]
 texture = ExtResource("2_cyhdl")
 20:14/size_in_atlas = Vector2i(4, 8)
 20:14/0 = 0
 20:14/0/y_sort_origin = 40
+20:14/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_4tv1n")
 20:14/0/physics_layer_0/polygon_0/points = PackedVector2Array(-24.5546, -13.5474, 23.4257, -24.8369, 17.2164, 56.4474, -21.1678, 50.2382)
 24:14/size_in_atlas = Vector2i(4, 8)
 24:14/0 = 0
@@ -47,6 +51,7 @@ texture = ExtResource("2_cyhdl")
 8:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-14.9586, -3.38684, 16.0875, -3.95132, 17.2164, 29.3526, -8.74935, 28.2237)
 
 [sub_resource type="TileSet" id="TileSet_4tv1n"]
+occlusion_layer_0/light_mask = 1
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_wnm7i")
 
